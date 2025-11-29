@@ -70,6 +70,5 @@ docker compose down -v
 - **Serialization:** Protocol Buffers
 
 ---
-
-**Версия:** 2.0  
-**Дата:** 29.11.2025
+## Скриншот
+![main](scrin.jpg)
