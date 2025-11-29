@@ -1,0 +1,349 @@
+[
+  {
+    "id": "grpc",
+    "term": "gRPC",
+    "definition": "gRPC (gRPC Remote Procedure Calls) — современный высокопроизводительный фреймворк для удалённого вызова процедур (RPC). Использует HTTP/2 для передачи данных и Protocol Buffers для сериализации.",
+    "category": "RPC",
+    "source": "grpc.io, primer.txt",
+    "related_terms": ["protobuf", "http2", "rpc", "streaming"]
+  },
+  {
+    "id": "protobuf",
+    "term": "Protocol Buffers (Protobuf)",
+    "definition": "Механизм сериализации данных, разработанный компанией Google. Использует бинарный формат для компактной и эффективной сериализации структурированных данных для обмена между различными системами/сервисами.",
+    "category": "Serialization",
+    "source": "developers.google.com/protocol-buffers, primer.txt",
+    "related_terms": ["grpc", "serialization", "proto-file", "compilation"]
+  },
+  {
+    "id": "http2",
+    "term": "HTTP/2",
+    "definition": "Основной протокол передачи данных в gRPC. Обеспечивает многопоточность, эффективное управление соединениями, сжатие заголовков и поддержку стримов.",
+    "category": "Protocol",
+    "source": "http2.github.io, primer.txt",
+    "related_terms": ["grpc", "http", "protocol", "streaming", "multiplexing"]
+  },
+  {
+    "id": "rpc",
+    "term": "RPC (Remote Procedure Call)",
+    "definition": "Протокол удалённого вызова процедур. Позволяет программе запрашивать выполнение процедуры в другой программе, расположенной на удалённом компьютере в сети.",
+    "category": "RPC",
+    "source": "Wikipedia, primer.txt",
+    "related_terms": ["grpc", "microservices", "client-server"]
+  },
+  {
+    "id": "microservices",
+    "term": "Microservices (Микросервисы)",
+    "definition": "Архитектурный подход к разработке программного обеспечения, при котором приложение структурируется как набор слабо связанных сервисов.",
+    "category": "Architecture",
+    "source": "martinfowler.com, primer.txt",
+    "related_terms": ["rpc", "grpc", "api", "docker", "containerization"]
+  },
+  {
+    "id": "api",
+    "term": "API (Application Programming Interface)",
+    "definition": "Набор функций и процедур, позволяющих создавать приложения, которые обращаются к функциям или данным операционной системы, приложения или другого сервиса.",
+    "category": "Architecture",
+    "source": "Wikipedia",
+    "related_terms": ["rest", "grpc", "microservices", "web-api"]
+  },
+  {
+    "id": "rest",
+    "term": "REST (Representational State Transfer)",
+    "definition": "Архитектурный стиль для создания веб-сервисов. Для публичных API часто предпочтительнее gRPC благодаря использованию привычных форматов JSON и HTTP/1.1.",
+    "category": "Architecture",
+    "source": "restfulapi.net, primer.txt",
+    "related_terms": ["api", "http", "grpc", "json"]
+  },
+  {
+    "id": "serialization",
+    "term": "Serialization (Сериализация)",
+    "definition": "Процесс преобразования структур данных или состояния объекта в формат, который может быть сохранён или передан и позже восстановлен. В Protobuf обеспечивает сжатие и быстродействие.",
+    "category": "Serialization",
+    "source": "Wikipedia, primer.txt",
+    "related_terms": ["protobuf", "json", "deserialization", "binary-format"]
+  },
+  {
+    "id": "json",
+    "term": "JSON (JavaScript Object Notation)",
+    "definition": "Текстовый формат обмена данными, легко читаемый для человека. По сравнению с ним Protobuf более компактен и быстр в обработке.",
+    "category": "Serialization",
+    "source": "json.org, primer.txt",
+    "related_terms": ["serialization", "api", "rest", "xml"]
+  },
+  {
+    "id": "http",
+    "term": "HTTP (Hypertext Transfer Protocol)",
+    "definition": "Протокол прикладного уровня передачи данных. HTTP/1.1 часто используется в REST API, в то время как gRPC использует HTTP/2.",
+    "category": "Protocol",
+    "source": "ietf.org, primer.txt",
+    "related_terms": ["http2", "rest", "protocol"]
+  },
+  {
+    "id": "protocol",
+    "term": "Protocol (Протокол)",
+    "definition": "Набор правил или процедур для передачи данных между электронными устройствами, такими как компьютеры.",
+    "category": "Protocol",
+    "source": "Wikipedia",
+    "related_terms": ["http", "http2", "grpc"]
+  },
+  {
+    "id": "streaming",
+    "term": "Streaming (Стриминг)",
+    "definition": "Возможность gRPC поддерживать двусторонний обмен данными (bidirectional streaming). Поддерживает однонаправленные и двусторонние потоки данных.",
+    "category": "gRPC Features",
+    "source": "primer.txt",
+    "related_terms": ["grpc", "http2", "bidirectional-streaming", "rpc"]
+  },
+  {
+    "id": "proto-file",
+    "term": ".proto файл",
+    "definition": "Файл с описанием структуры данных и сервисов в Protocol Buffers. Определяет контракты API, минимизируя вероятность ошибок в реализации клиента и сервера.",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["protobuf", "compilation", "syntax-proto3", "message", "service"]
+  },
+  {
+    "id": "compilation",
+    "term": "Compilation (Компиляция .proto)",
+    "definition": "Процесс генерации кода из .proto файлов. Создаёт классы для конкретных языков программирования с помощью protoc компилятора.",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["proto-file", "protobuf", "protoc", "code-generation"]
+  },
+  {
+    "id": "message",
+    "term": "Message (Сообщение)",
+    "definition": "Структура данных в Protocol Buffers, описывающая набор полей. Например: message HelloRequest { string name = 1; }",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["proto-file", "protobuf", "field", "data-types"]
+  },
+  {
+    "id": "service",
+    "term": "Service (Сервис)",
+    "definition": "Определение набора RPC методов в .proto файле. Например: service Greeter { rpc SayHello (HelloRequest) returns (HelloReply) {} }",
+    "category": "gRPC",
+    "source": "primer.txt",
+    "related_terms": ["grpc", "proto-file", "rpc", "method"]
+  },
+  {
+    "id": "syntax-proto3",
+    "term": "syntax = \"proto3\"",
+    "definition": "Декларация версии синтаксиса Protocol Buffers в .proto файле. Proto3 — текущая рекомендуемая версия.",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["proto-file", "protobuf"]
+  },
+  {
+    "id": "package",
+    "term": "package",
+    "definition": "Строка в .proto файле для организации пространства имён и избежания конфликтов имён. Преобразуется в модули для разных языков программирования.",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["proto-file", "namespace", "import"]
+  },
+  {
+    "id": "import",
+    "term": "import (в .proto)",
+    "definition": "Директива для использования типов данных, определённых в другом .proto файле. Например: import \"common.proto\";",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["proto-file", "package", "protobuf"]
+  },
+  {
+    "id": "data-types",
+    "term": "Data Types (Типы данных в .proto)",
+    "definition": "Строго определённый набор типов: числовые (int32, float, sfixed64), строковые (string), булевы (bool), байтовые (bytes), перечисления (enum), вложенные сообщения и списки (repeated).",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["message", "proto-file", "field", "repeated"]
+  },
+  {
+    "id": "repeated",
+    "term": "repeated",
+    "definition": "Ключевое слово в .proto для создания массива (списка) значений. Например: repeated int32 numbers = 1;",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["data-types", "message", "array"]
+  },
+  {
+    "id": "enum",
+    "term": "enum (Перечисление)",
+    "definition": "Тип данных в .proto для определения набора константных значений. Например: enum Status { UNKNOWN = 0; ACTIVE = 1; }",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["data-types", "message", "proto-file"]
+  },
+  {
+    "id": "binary-format",
+    "term": "Binary Format (Бинарный формат)",
+    "definition": "Формат сериализации данных в Protobuf, позволяющий значительно уменьшить объём передаваемых данных по сравнению с текстовыми форматами (XML, JSON).",
+    "category": "Serialization",
+    "source": "primer.txt",
+    "related_terms": ["protobuf", "serialization", "compression"]
+  },
+  {
+    "id": "compression",
+    "term": "Compression (Сжатие)",
+    "definition": "Одно из преимуществ Protobuf — компактное представление данных. HTTP/2 также обеспечивает сжатие заголовков.",
+    "category": "Performance",
+    "source": "primer.txt",
+    "related_terms": ["binary-format", "protobuf", "http2", "performance"]
+  },
+  {
+    "id": "performance",
+    "term": "Performance (Производительность)",
+    "definition": "Ключевое преимущество gRPC — высокая производительность благодаря бинарному формату, HTTP/2 и уменьшению объёма данных. Быстрее в сериализации и десериализации по сравнению с текстовыми форматами.",
+    "category": "Performance",
+    "source": "primer.txt",
+    "related_terms": ["grpc", "protobuf", "compression", "binary-format"]
+  },
+  {
+    "id": "client-server",
+    "term": "Client-Server (Клиент-Сервер)",
+    "definition": "Архитектурная модель в gRPC: клиент вызывает удалённые процедуры, сервер обрабатывает запросы и возвращает результаты.",
+    "category": "Architecture",
+    "source": "primer.txt",
+    "related_terms": ["grpc", "rpc", "stub"]
+  },
+  {
+    "id": "stub",
+    "term": "Stub (Заглушка)",
+    "definition": "Сгенерированный клиентский класс для вызова gRPC методов. Например: stub = helloworld_pb2_grpc.GreeterStub(channel)",
+    "category": "gRPC",
+    "source": "primer.txt",
+    "related_terms": ["client-server", "grpc", "channel"]
+  },
+  {
+    "id": "channel",
+    "term": "Channel (Канал)",
+    "definition": "Соединение между клиентом и сервером в gRPC. Например: grpc.insecure_channel('localhost:50051')",
+    "category": "gRPC",
+    "source": "primer.txt",
+    "related_terms": ["grpc", "stub", "client-server"]
+  },
+  {
+    "id": "protoc",
+    "term": "protoc",
+    "definition": "Компилятор Protocol Buffers. Генерирует код на различных языках из .proto файлов. Пример: python -m grpc_tools.protoc -I./protobufs --python_out=. --grpc_python_out=. ./protobufs/helloworld.proto",
+    "category": "Tools",
+    "source": "primer.txt",
+    "related_terms": ["compilation", "proto-file", "code-generation"]
+  },
+  {
+    "id": "code-generation",
+    "term": "Code Generation (Генерация кода)",
+    "definition": "Автоматическое создание классов для работы с Protobuf сообщениями и gRPC сервисами на основе .proto файлов. Создаёт _pb2.py и _pb2_grpc.py файлы для Python.",
+    "category": "Tools",
+    "source": "primer.txt",
+    "related_terms": ["protoc", "compilation", "proto-file"]
+  },
+  {
+    "id": "docker",
+    "term": "Docker",
+    "definition": "Платформа контейнеризации для упаковки приложений и их зависимостей в изолированные контейнеры, обеспечивающие быстрое развёртывание на произвольной платформе.",
+    "category": "Containerization",
+    "source": "docker.com, primer.txt",
+    "related_terms": ["containerization", "microservices", "docker-compose", "dockerfile"]
+  },
+  {
+    "id": "containerization",
+    "term": "Containerization (Контейнеризация)",
+    "definition": "Технология упаковки приложения и всех его зависимостей в изолированный контейнер для обеспечения переносимости и быстрого развёртывания.",
+    "category": "Containerization",
+    "source": "primer.txt",
+    "related_terms": ["docker", "microservices", "deployment"]
+  },
+  {
+    "id": "dockerfile",
+    "term": "Dockerfile",
+    "definition": "Текстовый файл с инструкциями для создания Docker образа. Определяет базовый образ, зависимости, копирование файлов и команды запуска.",
+    "category": "Containerization",
+    "source": "primer.txt",
+    "related_terms": ["docker", "docker-image", "docker-build"]
+  },
+  {
+    "id": "docker-compose",
+    "term": "docker-compose",
+    "definition": "Инструмент для определения и запуска многоконтейнерных Docker приложений. Использует YAML файл для конфигурации сервисов.",
+    "category": "Containerization",
+    "source": "primer.txt",
+    "related_terms": ["docker", "microservices", "orchestration"]
+  },
+  {
+    "id": "docker-network",
+    "term": "Docker Network",
+    "definition": "Виртуальная сеть для обеспечения связи между контейнерами. Например: docker network create microservices",
+    "category": "Containerization",
+    "source": "primer.txt",
+    "related_terms": ["docker", "microservices", "networking"]
+  },
+  {
+    "id": "multiplexing",
+    "term": "Multiplexing (Многопоточность)",
+    "definition": "Возможность HTTP/2 одновременно передавать несколько запросов и ответов по одному TCP соединению.",
+    "category": "Protocol",
+    "source": "primer.txt",
+    "related_terms": ["http2", "grpc", "performance"]
+  },
+  {
+    "id": "bidirectional-streaming",
+    "term": "Bidirectional Streaming",
+    "definition": "Двусторонний обмен данными в gRPC, когда клиент и сервер могут одновременно отправлять потоки сообщений друг другу.",
+    "category": "gRPC Features",
+    "source": "primer.txt",
+    "related_terms": ["streaming", "grpc", "http2"]
+  },
+  {
+    "id": "cross-language",
+    "term": "Cross-Language Support (Межъязыковая поддержка)",
+    "definition": "Protobuf и gRPC поддерживают множество языков программирования (Python, C++, Java, Go, Kotlin и другие), что позволяет интегрировать системы, написанные на разных языках.",
+    "category": "Features",
+    "source": "primer.txt",
+    "related_terms": ["protobuf", "grpc", "interoperability"]
+  },
+  {
+    "id": "xml",
+    "term": "XML",
+    "definition": "Текстовый формат разметки данных. По сравнению с ним Protobuf обеспечивает более компактное представление и быструю обработку.",
+    "category": "Serialization",
+    "source": "primer.txt",
+    "related_terms": ["json", "serialization", "protobuf"]
+  },
+  {
+    "id": "web-api",
+    "term": "Web API",
+    "definition": "Программный интерфейс для взаимодействия через веб. Может быть реализован с использованием REST (HTTP/JSON) или gRPC (HTTP/2/Protobuf).",
+    "category": "Architecture",
+    "source": "primer.txt",
+    "related_terms": ["api", "rest", "grpc", "http"]
+  },
+  {
+    "id": "deployment",
+    "term": "Deployment (Развёртывание)",
+    "definition": "Процесс установки и запуска приложения на целевой платформе. Docker обеспечивает быстрое и воспроизводимое развёртывание.",
+    "category": "DevOps",
+    "source": "primer.txt",
+    "related_terms": ["docker", "containerization", "docker-compose"]
+  },
+  {
+    "id": "field",
+    "term": "Field (Поле)",
+    "definition": "Элемент данных в message с типом, именем и уникальным номером. Например: string name = 1; int32 age = 2;",
+    "category": "Protobuf",
+    "source": "primer.txt",
+    "related_terms": ["message", "data-types", "proto-file"]
+  },
+  {
+    "id": "namespace",
+    "term": "Namespace (Пространство имён)",
+    "definition": "Логическая группировка элементов программы. В Protobuf создаётся с помощью package для организации и избежания конфликтов.",
+    "category": "Programming",
+    "source": "primer.txt",
+    "related_terms": ["package", "proto-file", "organization"]
+  }
+]
+
+
+

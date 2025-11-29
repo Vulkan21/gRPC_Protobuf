@@ -1,0 +1,7 @@
+flask==3.0.0
+werkzeug==3.0.1
+grpcio==1.60.0
+grpcio-tools==1.60.0
+
+
+

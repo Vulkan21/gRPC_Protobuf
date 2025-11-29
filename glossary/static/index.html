@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossary MindMap</title>
+    <script src="https://unpkg.com/vis-network@9.1.2/standalone/umd/vis-network.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        #controls {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        #search {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #555;
+        }
+        
+        #container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        #network {
+            flex: 1;
+            border-right: 1px solid #ddd;
+        }
+        
+        #info {
+            width: 350px;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #fafafa;
+        }
+        
+        #info h2 {
+            margin-top: 0;
+        }
+        
+        .term-detail {
+            margin-bottom: 15px;
+        }
+        
+        .term-detail label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .related-term {
+            display: inline-block;
+            background-color: #333;
+            color: white;
+            padding: 4px 8px;
+            margin: 2px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Glossary MindMap</h1>
+        <p>Semantic Graph of gRPC and Protocol Buffers Terms</p>
+    </header>
+    
+    <div id="controls">
+        <input type="text" id="search" placeholder="Search terms...">
+        <button onclick="searchTerms()">Search</button>
+        <button onclick="resetView()">Reset View</button>
+    </div>
+    
+    <div id="container">
+        <div id="network"></div>
+        <div id="info">
+            <h2>Term Information</h2>
+            <p>Click on a node to see details</p>
+        </div>
+    </div>
+
+    <script>
+        let network;
+        let allTerms = [];
+        
+        async function loadGraph() {
+            try {
+                const response = await fetch('/api/graph');
+                const data = await response.json();
+                
+                const termsResponse = await fetch('/api/terms');
+                allTerms = await termsResponse.json();
+                
+                const nodes = new vis.DataSet(
+                    data.nodes.map(node => ({
+                        id: node.id,
+                        label: node.label,
+                        color: {
+                            background: '#4CAF50',
+                            border: '#2E7D32',
+                            highlight: {
+                                background: '#66BB6A',
+                                border: '#1B5E20'
+                            }
+                        },
+                        font: {
+                            color: '#ffffff'
+                        }
+                    }))
+                );
+                
+                const edges = new vis.DataSet(
+                    data.links.map(link => ({
+                        from: link.source,
+                        to: link.target,
+                        arrows: 'to',
+                        color: {
+                            color: '#848484',
+                            highlight: '#333333'
+                        }
+                    }))
+                );
+                
+                const container = document.getElementById('network');
+                const graphData = {
+                    nodes: nodes,
+                    edges: edges
+                };
+                
+                const options = {
+                    nodes: {
+                        shape: 'box',
+                        margin: 10,
+                        widthConstraint: {
+                            maximum: 150
+                        }
+                    },
+                    edges: {
+                        smooth: {
+                            type: 'cubicBezier',
+                            forceDirection: 'horizontal',
+                            roundness: 0.4
+                        }
+                    },
+                    physics: {
+                        enabled: true,
+                        stabilization: {
+                            iterations: 200
+                        }
+                    },
+                    interaction: {
+                        hover: true
+                    }
+                };
+                
+                network = new vis.Network(container, graphData, options);
+                
+                network.on('click', function(params) {
+                    if (params.nodes.length > 0) {
+                        const nodeId = params.nodes[0];
+                        showTermInfo(nodeId);
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading graph:', error);
+            }
+        }
+        
+        function showTermInfo(termId) {
+            const term = allTerms.find(t => t.id === termId);
+            if (!term) return;
+            
+            const infoDiv = document.getElementById('info');
+            infoDiv.innerHTML = `
+                <h2>${term.term}</h2>
+                <div class="term-detail">
+                    <label>Definition:</label>
+                    <p>${term.definition}</p>
+                </div>
+                <div class="term-detail">
+                    <label>Category:</label>
+                    <p>${term.category}</p>
+                </div>
+                <div class="term-detail">
+                    <label>Source:</label>
+                    <p>${term.source}</p>
+                </div>
+                <div class="term-detail">
+                    <label>Related Terms:</label>
+                    <div>
+                        ${term.related_terms.map(rt => `<span class="related-term">${rt}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function searchTerms() {
+            const query = document.getElementById('search').value;
+            if (!query) return;
+            
+            try {
+                const response = await fetch(`/api/terms?query=${encodeURIComponent(query)}`);
+                const results = await response.json();
+                
+                if (results.length > 0) {
+                    network.selectNodes([results[0].id]);
+                    network.focus(results[0].id, {
+                        scale: 1.5,
+                        animation: true
+                    });
+                    showTermInfo(results[0].id);
+                }
+            } catch (error) {
+                console.error('Error searching:', error);
+            }
+        }
+        
+        function resetView() {
+            network.fit({
+                animation: true
+            });
+            document.getElementById('search').value = '';
+            document.getElementById('info').innerHTML = `
+                <h2>Term Information</h2>
+                <p>Click on a node to see details</p>
+            `;
+        }
+        
+        document.getElementById('search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchTerms();
+            }
+        });
+        
+        loadGraph();
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package recommendations;
+
+service Recommendations {
+    rpc RecommendBook(BookCategory) returns (BookRecommendation) {}
+}
+
+message BookCategory {
+    string category = 1;
+}
+
+message BookRecommendation {
+    repeated string recommendations = 1;
+}
+
+
+

@@ -1,0 +1,33 @@
+services:
+  marketplace:
+    build:
+      context: ./marketplace
+    ports:
+      - "5000:5000"
+    environment:
+      RECOMMENDATIONS_HOST: recommendations
+    networks:
+      - microservices
+    depends_on:
+      - recommendations
+
+  recommendations:
+    build:
+      context: ./recommendations
+    networks:
+      - microservices
+
+  glossary:
+    build:
+      context: ./glossary
+    ports:
+      - "8000:8000"
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    driver: bridge
+
+
+
