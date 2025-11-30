@@ -1,6 +1,5 @@
-# gRPC Protobuf Demo Project
-
-Учебный проект по gRPC, Protocol Buffers и Docker с глоссарием терминов и интерактивной MindMap визуализацией.
+### Исследовательская задача в файле research.md
+# gRPC Protobuf 
 
 ## Структура проекта
 
